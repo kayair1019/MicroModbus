@@ -73,7 +73,8 @@ void read_holding_registers(void) {
         uint8_t exc = data.exception_code;
     }
 }
-'''
+```
+
 
 ## API 概览
 

@@ -19,10 +19,6 @@ modbus_err_t modbus_slave_parse_request(const uint8_t *pdu, uint16_t pdu_len,
         if (pdu_len != 5)
             return MODBUS_ERR_PDU_TOO_SHORT;
         pdu_data->data.registers.count = ((uint16_t)pdu[3] << 8) | pdu[4];
-        // 地址信息也可以通过 union 或扩展字段暴露，这里只存数量，实际使用时可另取
-        // 对 slave 而言，最重要的是起始地址和数量，我们可约定调用者用额外函数读取
-        // 为了简洁，此处通过 data.registers.count 传递数量，起始地址可通过另一个接口获取
-        // 或者扩展 pdu_data 结构。目前保持最小实现，可自行扩展。
         break;
 
     case MODBUS_FC_WRITE_SINGLE_REGISTER:
